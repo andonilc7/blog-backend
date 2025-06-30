@@ -16,4 +16,42 @@ datasource db {
 model User {
   id Int @id @default(autoincrement())
   username String @unique
+  passwordHash String
+  role Role @default(NORMAL)
+  posts Post[]
+  comments Comment[]
+}
+
+model Post {
+  id Int @id @default(autoincrement())
+  title String
+  text String
+  createdAt DateTime @default(now())
+  // automatically stores the time that a record was updated
+  updatedAt DateTime @updatedAt
+  published Boolean @default(false)
+
+  author User @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId Int
+
+  comments Comment[]
+}
+
+model Comment {
+  id Int @id @default(autoincrement())
+  text String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId Int
+
+  author User @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId Int
+}
+
+// doing enum for Role so it is more standardized/easier to catch errors
+enum Role {
+  NORMAL
+  AUTHOR
 }
