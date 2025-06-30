@@ -1,1 +1,2 @@
 # blog-backend
+This is backend repo for the Blog Project that I am making. It is a project that consists of a REST API server and 2 frontend websites, one for blog editing and one for blog consumption. 

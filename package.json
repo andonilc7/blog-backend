@@ -1,0 +1,26 @@
+{
+  "name": "blog-backend",
+  "version": "1.0.0",
+  "description": "This is backend repo for the Blog Project that I am making. It is a project that consists of a REST API server and 2 frontend websites, one for blog editing and one for blog consumption.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andonilc7/blog-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andonilc7/blog-backend/issues"
+  },
+  "homepage": "https://github.com/andonilc7/blog-backend#readme",
+  "dependencies": {
+    "@prisma/client": "^6.10.1",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "prisma": "^6.10.1"
+  }
+}
