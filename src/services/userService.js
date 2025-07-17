@@ -52,9 +52,30 @@ async function deleteUser(id) {
   return user
 }
 
+async function getUserByUsername(username) {
+  const user = prisma.user.findUnique({
+    where: {
+      username: username
+    }
+  })
+
+  return user
+}
+
+async function getPostsForUser(userId, published) {
+  return await prisma.post.findMany({
+    where: {
+      authorId: userId,
+      published
+    }
+  })
+}
+
 module.exports = {
   getUserById,
   createUser,
   updateUser,
-  deleteUser
+  deleteUser,
+  getUserByUsername,
+  getPostsForUser
 }

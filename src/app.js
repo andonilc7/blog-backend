@@ -1,7 +1,13 @@
+// only need to call dotenv (load it) once! do it before everything else!
+require("dotenv").config()
 const express = require("express")
 const userRouter = require("./routes/users")
 const postRouter = require("./routes/posts")
 const commentRouter = require('./routes/comments')
+const authRouter = require("./routes/auth")
+// console.log(process.env)
+
+require("./config/passport")
 
 const app = express()
 
@@ -17,6 +23,15 @@ app.get("/", (req, res) => {
 app.use("/users", userRouter)
 app.use("/posts", postRouter)
 app.use("/comments", commentRouter)
+app.use("/auth", authRouter)
+
+app.use((err, req, res, next) => {
+  console.error(err)
+  res.status(err.status || 500).json({
+    error: err.message || "Internal Server Error",
+    note: "Caught in global error handler"
+  })
+})
 
 app.listen(5001, () => {
   console.log("Express server started on port 5001")

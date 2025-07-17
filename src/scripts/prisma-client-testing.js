@@ -2,10 +2,13 @@ const prisma = require("../db/prismaClient")
 const userService = require("../services/userService")
 
 async function main() {
-  const user = await userService.createUser({
-    username: "bob1", passwordHash: 'bobpwd', role: 'AUTHOR'
+  const comment = await prisma.post.delete({
+    where: {
+      id: 9
+    }
+    
   })
-  console.log(user)
+  console.log(comment)
 }
 
 main()
