@@ -2,7 +2,7 @@ const prisma = require("../db/prismaClient")
 const { post } = require("../routes/auth")
 
 async function getPublicPosts() {
-  return await prisma.post.findMany({
+  const posts =  await prisma.post.findMany({
     where: {
       published: true
     },
@@ -21,6 +21,11 @@ async function getPublicPosts() {
       }
     }
   })
+  const postsWithLinks = posts.map(post => ({
+    ...post,
+    relUrl: "/posts/"+ post.id
+  }))
+  return postsWithLinks
 }
 
 async function getPostById(postId) {
