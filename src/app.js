@@ -5,12 +5,14 @@ const userRouter = require("./routes/users")
 const postRouter = require("./routes/posts")
 const commentRouter = require('./routes/comments')
 const authRouter = require("./routes/auth")
+const cors = require("cors")
 // console.log(process.env)
 
 require("./config/passport")
 
 const app = express()
 
+app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
